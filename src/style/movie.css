@@ -1,0 +1,22 @@
+.movie{
+    height: 100%;
+    width: 100%;
+}
+
+.movie img{
+    border: 1px solid white;
+}
+.no_image{
+    height: 280px;
+    width: 183px;
+    border: 1px solid white;
+    color: white;
+    
+    word-wrap: break-all;
+    white-space: normal;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
