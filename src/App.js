@@ -20,13 +20,13 @@ class App extends Component {
         error: null,
     };
     this.fetchNowPlayingData = this.fetchNowPlayingData.bind(this);
-    this.fetchLatestMovies = this.fetchLatestMovies.bind(this);
-    this.fetchUpcomingMovies = this.fetchUpcomingMovies.bind(this);
+    this.fetchLatestData = this.fetchLatestData.bind(this);
+    this.fetchUpcomingData = this.fetchUpcomingData.bind(this);
   }
   componentDidMount(){
     this.fetchNowPlayingData();
-    this.fetchLatestMovies();
-    this.fetchUpcomingMovies();
+    this.fetchLatestData();
+    this.fetchUpcomingData();
   }
 
   fetchNowPlayingData = () => {   
@@ -38,7 +38,7 @@ class App extends Component {
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
-  fetchLatestMovies = () => {   
+  fetchLatestData = () => {   
     fetch(latest_api)
       .then(response => response.json())
       .then(data => {
@@ -47,7 +47,7 @@ class App extends Component {
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
-  fetchUpcomingMovies = () => {   
+  fetchUpcomingData = () => {   
     fetch(upcoming_api)
       .then(response => response.json())
       .then(data => {

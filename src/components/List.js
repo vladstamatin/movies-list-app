@@ -13,7 +13,7 @@ function List(props) {
           {now_playing.map(function(now, index){
             return (
               <Link key={now.id} to={`/playing/${now.original_title}`}>
-                <li><Movie img_path={now.poster_path} title={now.title}/></li>
+                <li key={now.id}><Movie img_path={now.poster_path} title={now.title}/></li>
               </Link>
             )
           })}
@@ -22,7 +22,7 @@ function List(props) {
         <ul>
         <p>Latest</p>
           <Link key={latest.id} to={`/latest/${latest.original_title}`}>
-            <li><Movie img_path={latest.poster_path} title={latest.title}/></li>
+            <li key={latest.id}><Movie img_path={latest.poster_path} title={latest.title}/></li>
           </Link>
         </ul>
 
@@ -31,7 +31,7 @@ function List(props) {
           {upcoming.map(function(upcoming, index){
             return (
               <Link key={upcoming.id} to={`/upcoming/${upcoming.original_title}`}>
-                <li><Movie img_path={upcoming.poster_path} title={upcoming.title}/></li>
+                <li key={upcoming.id}><Movie img_path={upcoming.poster_path} title={upcoming.title}/></li>
               </Link>
             )
           })}
