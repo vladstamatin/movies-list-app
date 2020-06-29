@@ -4,7 +4,7 @@ import '../style/list.css'
 import Movie from './Movie'
   
 function List(props) {
-    const { now_playing, latest, upcoming } = props
+    const { now_playing, latest, upcoming } = props;
 
     return (
       <div className="list">  
@@ -41,4 +41,4 @@ function List(props) {
   };
 
 
-  export default List
+  export default List;

@@ -67,7 +67,7 @@ import '../style/details.css'
           <hr/>
           <p>Genre</p>{
             listType === "playing" ? <p>{genre_now_playing ? genre_now_playing : "Genre NOT FOUND"}</p> :
-            listType === "latest" ? <p>{genre_latest && genre_latest.length > 0 ? genre_latest.map(function(genre){ return ( <>{genre.name} /</>)} ) : "Genre NOT FOUND"}</p> :
+            listType === "latest" ? <p>{genre_latest && genre_latest.length > 0 ? genre_latest.map(function(genre){ return ( <>{genre.id} : {genre.name}</>)} ) : "Genre NOT FOUND"}</p> :
             listType === "upcoming" ? <p>{genre_upcoming ? genre_upcoming : "Genre NOT FOUND"}</p> : 
             "Error 404, NOT FOUND"
           }

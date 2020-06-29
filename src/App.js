@@ -9,7 +9,6 @@ const latest_api = `https://api.themoviedb.org/3/movie/latest?api_key=57c23b2d88
 const upcoming_api = `https://api.themoviedb.org/3/movie/upcoming?api_key=57c23b2d887f53cf4e9808685fd0c6bc&language=en-US&page=1`;
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +22,7 @@ class App extends Component {
     this.fetchLatestData = this.fetchLatestData.bind(this);
     this.fetchUpcomingData = this.fetchUpcomingData.bind(this);
   }
+
   componentDidMount(){
     this.fetchNowPlayingData();
     this.fetchLatestData();
@@ -57,7 +57,8 @@ class App extends Component {
   }
 
   render(){
-    const { now_playing, latest, upcoming } = this.state
+    const { now_playing, latest, upcoming } = this.state;
+
   return (
     <div className="App">
       <Switch>
