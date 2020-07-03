@@ -4,8 +4,8 @@ import '../style/details.css'
   function Details(props) {
     const { now_playing, latest, upcoming } = props;
 
-    const now_playing_filtered = now_playing.filter((elem) => elem.title === props.match.params.movieName)
-    const upcoming_filtered = upcoming.filter((elem) => elem.title === props.match.params.movieName)
+    const now_playing_filtered = now_playing.results.filter((elem) => elem.title === props.match.params.movieName)
+    const upcoming_filtered = upcoming.results.filter((elem) => elem.title === props.match.params.movieName)
     
     // get list type of accesed movie
     const listType = props.match.params.listType;

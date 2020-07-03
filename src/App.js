@@ -18,47 +18,25 @@ class App extends Component {
         isLoading: true,
         error: null,
     };
-    this.fetchNowPlayingData = this.fetchNowPlayingData.bind(this);
-    this.fetchLatestData = this.fetchLatestData.bind(this);
-    this.fetchUpcomingData = this.fetchUpcomingData.bind(this);
   }
 
   componentDidMount(){
-    this.fetchNowPlayingData();
-    this.fetchLatestData();
-    this.fetchUpcomingData();
+    this.fetchData(now_playing_api, "now_playing");
+    this.fetchData(latest_api, "latest");
+    this.fetchData(upcoming_api, "upcoming");
   }
 
-  fetchNowPlayingData = () => {   
-    fetch(now_playing_api)
+  fetchData = (param, stateObj) => {   
+    fetch(param)
       .then(response => response.json())
       .then(data => {
-        this.setState({ now_playing: data.results })
-    })
-      .catch(error => this.setState({ error, isLoading: false }));
-  }
-
-  fetchLatestData = () => {   
-    fetch(latest_api)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ latest: data })
-    })
-      .catch(error => this.setState({ error, isLoading: false }));
-  }
-
-  fetchUpcomingData = () => {   
-    fetch(upcoming_api)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ upcoming: data.results })
+        this.setState({ [stateObj]: data })
     })
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
   render(){
     const { now_playing, latest, upcoming } = this.state;
-
   return (
     <div className="App">
       <Switch>
