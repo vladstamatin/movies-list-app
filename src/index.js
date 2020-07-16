@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
-import './style/index.css';
+import './style/index.scss';
 
 ReactDOM.render(
   <Router>

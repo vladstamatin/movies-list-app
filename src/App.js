@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './style/App.css';
-import Details from './components/Details';
-import List from './components/List';
+import './style/App.scss';
+import Details from './components/Details/Details';
+import List from './components/List/List';
+import Banner from './components/Banner/Banner';
 
-const now_playing_api = `https://api.themoviedb.org/3/movie/now_playing?api_key=57c23b2d887f53cf4e9808685fd0c6bc&language=en-US&page=1`;
-const latest_api = `https://api.themoviedb.org/3/movie/latest?api_key=57c23b2d887f53cf4e9808685fd0c6bc&language=en-US`;
-const upcoming_api = `https://api.themoviedb.org/3/movie/upcoming?api_key=57c23b2d887f53cf4e9808685fd0c6bc&language=en-US&page=1`;
+const API_KEY = "57c23b2d887f53cf4e9808685fd0c6bc";
+
+const now_playing_api = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
+const popular_api = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+const upcoming_api = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
         now_playing: [],
-        latest: [],
+        popular: [],
         upcoming: [],
+        images: [],
         isLoading: true,
         error: null,
     };
@@ -22,7 +26,7 @@ class App extends Component {
 
   componentDidMount(){
     this.fetchData(now_playing_api, "now_playing");
-    this.fetchData(latest_api, "latest");
+    this.fetchData(popular_api, "popular");
     this.fetchData(upcoming_api, "upcoming");
   }
 
@@ -36,12 +40,20 @@ class App extends Component {
   }
 
   render(){
-    const { now_playing, latest, upcoming } = this.state;
+    const { now_playing, popular, upcoming } = this.state;
+
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/"  component={() => <List now_playing={now_playing} latest={latest} upcoming={upcoming} />} />
-        <Route exact path="/:listType/:movieName" component={(props) => (<Details {...props} now_playing={now_playing} latest={latest} upcoming={upcoming} />)} />
+        <Route exact path="/"  component={() => 
+          <>
+            <Banner title="Movie React App" backdrop={popular}/>
+            <List title="Now Playing" feedData={now_playing} />
+            <List title="Popular" feedData={popular}/>
+            <List title="Upcoming" feedData={upcoming} />
+          </>
+        }/>
+        <Route exact path="/:listType/:movieName" component={(props) => (<Details {...props} now_playing={now_playing} popular={popular} upcoming={upcoming} />)} />
       </Switch>
     </div>
   );
