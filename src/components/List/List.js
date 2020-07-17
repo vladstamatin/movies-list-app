@@ -12,7 +12,7 @@ function List(props) {
         <ul>
           {feedData.results && feedData.results.map(function(elem){
             return (
-              <Link key={elem.id} to={`/playing/${elem.original_title}`}>
+              <Link key={elem.id} to={`/${title}/${elem.original_title}`}>
                 <li key={elem.id}>
                   <Movie img_path={elem.poster_path} title={elem.title} adult={elem.adult}/>
                 </li>
