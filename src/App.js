@@ -21,6 +21,11 @@ class App extends Component {
         images: [],
         isLoading: true,
         error: null,
+        loaded: {
+          popular: false,
+          upcoming: false,
+          now_playing: false
+        }
     };
   }
 
@@ -34,20 +39,30 @@ class App extends Component {
     fetch(param)
       .then(response => response.json())
       .then(data => {
-        this.setState({ [stateObj]: data })
+        var loaded = {...this.state.loaded}
+        loaded[stateObj] = true;
+        this.setState({
+          [stateObj]: data,
+          loaded
+        })
     })
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
   render(){
-    const { now_playing, popular, upcoming } = this.state;
-
+  const { now_playing, popular, upcoming } = this.state;
   return (
     <div className="App">
       <Switch>
         <Route exact path="/"  component={() => 
           <>
-            <Banner title="Movie React App" backdrop={popular}/>
+          {
+            this.state.loaded.now_playing 
+            && this.state.loaded.popular
+            && this.state.loaded.upcoming
+            ? <Banner title="Movie React App" backdrop={popular}/>
+            : null
+          }
             <List title="Now Playing" feedData={now_playing} />
             <List title="Popular" feedData={popular}/>
             <List title="Upcoming" feedData={upcoming} />

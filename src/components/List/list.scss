@@ -10,13 +10,17 @@
     overflow-x: scroll;
 }
 
-.list li{
-    display: inline-block;
-    margin-right: 40px;
-    margin-bottom: 40px;
+.list ul::-webkit-scrollbar{
+    display: none;
 }
 
-.list ul p{
+.list li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.list p{
+    margin-left: 40px;
     font-size: 2em;
     color: white;
 }

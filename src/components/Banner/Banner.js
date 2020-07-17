@@ -1,11 +1,9 @@
 import React from 'react'
 import './banner.scss'
+const get_image = "http://image.tmdb.org/t/p/original";
 
 function Banner(props) {
-    const get_image = "http://image.tmdb.org/t/p/original";
     const { title, backdrop } = props;
-
-
 
     Object.size = function(obj) {
         var size = 0, key;
@@ -16,19 +14,26 @@ function Banner(props) {
     };
     const size = Object.size(backdrop.results);
     const getRandomFromSize = Math.floor(Math.random() * size);
-    const img_path  = backdrop.results && backdrop.results[getRandomFromSize] && backdrop.results[getRandomFromSize].backdrop_path
+    const pickedMovie  = backdrop.results && backdrop.results[getRandomFromSize]
+    const img_path = pickedMovie.backdrop_path;
+    const movieTitle = pickedMovie.original_title;
+    const movieDescription = pickedMovie.overview;
 
-    console.log(img_path)
-      return (
+    function truncate (str, n){
+        return str.length > n ? str.substr(0, n-1) + "..." : str;
+    }
+    return (
         <>
         <div className="navbar">
             <h3>{title}</h3>
         </div>
         <div className="banner">
-            {/* <h2>{movieTitle}</h2>
-            <p>{movieDescription}</p> */}
+            <img className="backdrop" src={get_image + img_path} alt={title} ></img>
 
-            <img className="backdrop" src={get_image + img_path} alt={title} />
+            <div className="banner-data">
+                <h2>{movieTitle}</h2>
+                <p>{truncate(movieDescription, 150)}</p> 
+            </div>
             <div className="fade_out_bottom"/>
         </div>
         </>
