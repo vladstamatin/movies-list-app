@@ -49,8 +49,24 @@ class App extends Component {
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
+  getRandomMovie (moviesObj) {
+    Object.size = function(obj) {
+      var size = 0, key;
+      for (key in obj) {
+          if (obj.hasOwnProperty(key)) size++;
+      }
+      return size;
+  };
+  const size = Object.size(moviesObj.results);
+  const getRandomFromSize = Math.floor(Math.random() * size);
+
+  return moviesObj.results && moviesObj.results[getRandomFromSize]
+  }
+
   render(){
   const { now_playing, popular, upcoming } = this.state;
+  const randomObject =  this.getRandomMovie(popular);
+  
   return (
     <div className="App">
       <Switch>
@@ -60,7 +76,7 @@ class App extends Component {
             this.state.loaded.now_playing 
             && this.state.loaded.popular
             && this.state.loaded.upcoming
-            ? <Banner title="Movie React App" backdrop={popular}/>
+            ? <Banner title="Movie React App" backdrop={randomObject}/>
             : null
           }
             <List title="Now Playing" feedData={now_playing} />

@@ -5,7 +5,6 @@ import Movie from './Movie/Movie'
   
 function List(props) {
     const { feedData, title } = props;
-
     return (
       <div className="list">  
       <p>{title}</p>

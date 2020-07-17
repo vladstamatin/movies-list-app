@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Banner from "../Banner/Banner"
 import './details.scss'
 
   function Details(props) {
@@ -18,24 +19,25 @@ import './details.scss'
     }
     fetchData();
     }, [])
-
-    const movies_filtered = (Movies.results || []).filter((elem) => elem.original_title === props.match.params.movieName)
+    
+    const filtered_movie = (Movies.results || []).filter((elem) => elem.original_title === props.match.params.movieName)
 
     // title
-    const title_Movies  = movies_filtered && movies_filtered[0] && movies_filtered[0].title
+    const title  = filtered_movie && filtered_movie[0] && filtered_movie[0].title
 
     // description
-    const description_Movies = movies_filtered && movies_filtered[0] && movies_filtered[0].overview
+    const description = filtered_movie && filtered_movie[0] && filtered_movie[0].overview
 
     return (
       <div className="details-container">
         <div className="details">
+        <Banner title={title} backdrop={filtered_movie[0]}/>
           <hr/>
           <p>Title</p>
-            <p>{title_Movies ? title_Movies : "Title NOT FOUND"}</p> 
+            <p>{title ? title : "Title NOT FOUND"}</p> 
           <hr/>
           <p>Description</p>
-            <p>{description_Movies ? description_Movies : "Description NOT FOUND"}</p> 
+            <p>{description ? description : "Description NOT FOUND"}</p> 
           <hr/>
         </div>
       </div>
