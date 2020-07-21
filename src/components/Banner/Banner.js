@@ -4,7 +4,6 @@ const get_image = "http://image.tmdb.org/t/p/original";
 
 function Banner(props) {
     const { title, backdrop } = props;
-    
     if(backdrop){
         var img_path = backdrop.backdrop_path;
         var movieTitle = backdrop.original_title;

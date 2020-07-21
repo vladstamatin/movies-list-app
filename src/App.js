@@ -58,6 +58,10 @@ class App extends Component {
       return size;
   };
   const size = Object.size(moviesObj.results);
+  
+  if (moviesObj && moviesObj.length){
+    console.log("hello", moviesObj.length)
+  }
   const getRandomFromSize = Math.floor(Math.random() * size);
 
   return moviesObj.results && moviesObj.results[getRandomFromSize]
