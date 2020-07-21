@@ -4,11 +4,11 @@
     height: 280px;
 
     object-fit: contain;
+    transition: transform .2s;
 }
 .no_image{
     height: 280px;
     width: 184px;
-    border: 1px solid white;
     color: white;
     
     word-wrap: break-all;
@@ -20,6 +20,5 @@
 }
 
 .movie img:hover{
-    outline: 2px solid white;
-    outline-offset: -2px;
+    transform: scale(1.05);
 }

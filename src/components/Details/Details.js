@@ -58,7 +58,7 @@ const genres_api = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_
       var filtered_genres = (Genres.genres || []).filter((elem) => genreArray[0].includes(elem.id))
     }
     
-    console.log("what is here", genreArray)
+    console.log(Movies)
     return (
       <div className="details-container">
         <div className="details">
@@ -79,6 +79,7 @@ const genres_api = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_
                 </div>
               <p>Description <br/> {description}</p>
             </div>
+            <button className="btn--details">Watch Trailer</button>
           </div>
         </div>
       </div>
