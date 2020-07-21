@@ -1,6 +1,5 @@
 
 .movie img{
-    border: 1px solid white;
     width: 184px;
     height: 280px;
 
@@ -20,3 +19,7 @@
     align-items: center;
 }
 
+.movie img:hover{
+    outline: 2px solid white;
+    outline-offset: -2px;
+}
