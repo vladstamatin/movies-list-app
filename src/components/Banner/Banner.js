@@ -21,7 +21,7 @@ function Banner(props) {
             <h3>{title}</h3>
         </div>
         <div className="banner">
-            <img className="backdrop" src={get_image + img_path} alt={title} ></img>
+            {img_path ? <img className="backdrop" src={get_image + img_path} alt={title} /> : null} 
 
             <div className="banner-data">
                 <h2>{movieTitle}</h2>
