@@ -58,10 +58,6 @@ class App extends Component {
       return size;
   };
   const size = Object.size(moviesObj.results);
-  
-  if (moviesObj && moviesObj.length){
-    console.log("hello", moviesObj.length)
-  }
   const getRandomFromSize = Math.floor(Math.random() * size);
 
   return moviesObj.results && moviesObj.results[getRandomFromSize]
@@ -69,7 +65,7 @@ class App extends Component {
 
   render(){
   const { now_playing, popular, upcoming } = this.state;
-  const randomObject =  this.getRandomMovie(popular);
+  const randomMovie =  this.getRandomMovie(popular);
   
   return (
     <div className="App">
@@ -80,7 +76,7 @@ class App extends Component {
             this.state.loaded.now_playing 
             && this.state.loaded.popular
             && this.state.loaded.upcoming
-            ? <Banner title="Movie React App" backdrop={randomObject}/>
+            ? <Banner title="Movie React App" backdrop={randomMovie}/>
             : null
           }
             <List title="Now Playing" feedData={now_playing} />

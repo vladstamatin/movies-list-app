@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Banner from "../Banner/Banner"
 import Movie from '../List/Movie/Movie'
 import Trailer from './Trailer/Trailer'
+import Genre from './Genre/Genre'
 import './details.scss'
 
   function Details(props) {
@@ -12,28 +13,36 @@ import './details.scss'
     const genres_api = `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}&language=en-US`;
 
     useEffect(() => {
-      async function fetchMovies(){
+        let mounted = true
         fetch(props.match.params.listType === "Now Playing" ? now_playing :
           props.match.params.listType === "Popular" ? popular :
           props.match.params.listType === "Upcoming" ? upcoming :
         null)
       .then(response => response.json())
       .then(data => {
+        if (mounted) {
         setMovies(data)
+        }
       })
+      return function cleanup() {
+        mounted = false
       }
+    }, [])
 
-      async function fetchGenres(){
+    useEffect(() => {
+        let mounted = true
         fetch(genres_api)
       .then(response => response.json())
       .then(data => {
+        if (mounted) {
         setGenres(data)
+        }
       })
+      return function cleanup() {
+        mounted = false
       }
-    fetchMovies();
-    fetchGenres();
-    }, [])
 
+    }, [])
     const filtered_movie = (Movies.results || []).filter((elem) => elem.original_title === props.match.params.movieName)
 
     // title
@@ -64,30 +73,17 @@ import './details.scss'
       <div className="details-container">
         <div className="details">
 
-        <Banner title="Movie React App" backdrop={filtered_movie[0]}/>
-
+        {Movies && <Banner title="Movie React App" backdrop={filtered_movie[0]}/>}
         {movie_id && <Trailer movie_id={movie_id} api_key={api_key}/>}
 
           <div className="movie--block">
-
-            <Movie img_path={img_path} title={title} adult={adult}/>
-
+            {Movies && <Movie img_path={img_path} title={title} adult={adult}/>}
             <div className="more--details">
-              <h2>{title}</h2>
+              <h2>Title: {title}</h2>
               <p>Release Date: {date}</p>
-                <div className="genres">
-                {filtered_genres && filtered_genres.map((elem) => {
-                return (
-                  <li key={elem.id}>
-                  {elem.name}
-                  </li>
-                )
-                })}
-                </div>
+              {Genres && <Genre filtered_genres={filtered_genres}/>}
               <p>Description <br/> {description}</p>
             </div>
-
-            <button className="btn--details">Watch Trailer</button>
           </div>
 
         </div>
