@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Youtube from 'react-youtube'
 
-function Trailer(props) {
-    const { movie_id, api_key } = props;
+function Trailer({ movie_id, api_key }) {
     const [Videos ,setVideos] = useState([]);
-    console.log(movie_id)
     const trailer_api = `http://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${api_key}&language=en-US`;
 
     const opts = {

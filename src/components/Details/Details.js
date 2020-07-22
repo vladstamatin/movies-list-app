@@ -6,7 +6,7 @@ import Genre from './Genre/Genre'
 import './details.scss'
 
   function Details(props) {
-    const { now_playing, popular, upcoming, api_key } = props;
+    const { now_playing_api, popular_api, upcoming_api, api_key } = props;
     const [Movies ,setMovies] = useState([]);
     const [Genres ,setGenres] = useState([]);
 
@@ -14,9 +14,9 @@ import './details.scss'
 
     useEffect(() => {
         let mounted = true
-        fetch(props.match.params.listType === "Now Playing" ? now_playing :
-          props.match.params.listType === "Popular" ? popular :
-          props.match.params.listType === "Upcoming" ? upcoming :
+        fetch(props.match.params.listType === "Now Playing" ? now_playing_api :
+          props.match.params.listType === "Popular" ? popular_api :
+          props.match.params.listType === "Upcoming" ? upcoming_api :
         null)
       .then(response => response.json())
       .then(data => {
@@ -43,9 +43,10 @@ import './details.scss'
       }
 
     }, [])
+    
     const filtered_movie = (Movies.results || []).filter((elem) => elem.original_title === props.match.params.movieName)
 
-    // title
+    // id
     const movie_id  = filtered_movie && filtered_movie[0] && filtered_movie[0].id
 
     // title

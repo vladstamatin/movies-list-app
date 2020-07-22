@@ -1,8 +1,7 @@
 import React from 'react'
 import '.././details.scss'
 
-function Genre(props) {
-    const { filtered_genres } = props;
+function Genre({ filtered_genres }) {
     
     return (
         <div className="genres">

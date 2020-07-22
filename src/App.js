@@ -84,7 +84,7 @@ class App extends Component {
             <List title="Upcoming" feedData={upcoming} />
           </>
         }/>
-        <Route exact path="/:listType/:movieName" component={(props) => (<Details {...props} api_key={API_KEY} now_playing={now_playing_api} popular={popular_api} upcoming={upcoming_api} />)} />
+        <Route exact path="/:listType/:movieName" component={(props) => (<Details {...props} api_key={API_KEY} now_playing_api={now_playing_api} popular_api={popular_api} upcoming_api={upcoming_api} />)} />
       </Switch>
     </div>
   );

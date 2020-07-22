@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import './list.scss'
 import Movie from './Movie/Movie'
   
-function List(props) {
-    const { feedData, title } = props;
-
+function List({ feedData, title }) {
+  
     return (
       <div className="list">  
       <p>{title}</p>
